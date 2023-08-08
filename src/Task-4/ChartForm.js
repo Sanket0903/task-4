@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ChartForm = () => {
   const [box1Value, setBox1Value] = useState('');
@@ -72,32 +73,42 @@ const ChartForm = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="box1">Box 1:</label>
-      <input
-        type="number"
-        id="box1"
-        value={box1Value}
-        onChange={handleChangeBox1}
-      />
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-4">
+          <div className="form-group">
+            <label htmlFor="box1">Box 1:</label>
+            <input
+              type="number"
+              id="box1"
+              className="form-control"
+              value={box1Value}
+              onChange={handleChangeBox1}
+            />
+          </div>
 
-      <label htmlFor="box2">Box 2:</label>
-      <input
-        type="number"
-        id="box2"
-        value={box2Value}
-        onChange={handleChangeBox2}
-      />
+          <div className="form-group mt-2">
+            <label htmlFor="box2">Box 2:</label>
+            <input
+              type="number"
+              id="box2"
+              className="form-control"
+              value={box2Value}
+              onChange={handleChangeBox2}
+            />
+          </div>
 
-      {parseInt(box1Value) + parseInt(box2Value) > 100 && (
-        <p>Sum of values cannot exceed 100%</p>
-      )}
+          {parseInt(box1Value) + parseInt(box2Value) > 100 && (
+            <p className="text-danger">Sum of values cannot exceed 100%</p>
+          )}
 
-      <button onClick={handleCreateChart}>Create Chart</button>
+          <button className="btn btn-primary mt-4" onClick={handleCreateChart}>Create Chart</button>
 
-      {showChart && (
-        <canvas ref={canvasRef} width={200} height={200} style={{ margin: '20px' }} />
-      )}
+          {showChart && (
+            <canvas ref={canvasRef} width={200} height={200} style={{ margin: '20px' }} className="border" />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
