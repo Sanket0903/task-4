@@ -28,14 +28,14 @@ const ChartForm = () => {
           const centerY = canvas.height / 2;
           const radius = Math.min(canvas.width, canvas.height) / 2;
 
-          // Draw Box 1
+          
           ctx.beginPath();
           ctx.moveTo(centerX, centerY);
           ctx.arc(centerX, centerY, radius, 0, box1Angle);
           ctx.fillStyle = '#007bff';
           ctx.fill();
 
-          // Draw Box 2
+        
           ctx.beginPath();
           ctx.moveTo(centerX, centerY);
           ctx.arc(centerX, centerY, radius, box1Angle, box1Angle + box2Angle);
@@ -54,6 +54,12 @@ const ChartForm = () => {
     let value = parseInt(e.target.value);
     if (value > 100) {
       value = 100;
+      alert('value can not be more than 100')
+
+    }else if(value < 0){
+      value = 0
+      alert('value can not be less than 0')
+
     }
     setBox1Value(value.toString());
     setBox2Value((100 - value).toString());
@@ -63,6 +69,11 @@ const ChartForm = () => {
     let value = parseInt(e.target.value);
     if (value > 100) {
       value = 100;
+      alert('value can not be more than 100')
+
+    } else if(value < 0){
+      value = 0
+      alert('value can not be less than 0')
     }
     setBox2Value(value.toString());
     setBox1Value((100 - value).toString());
@@ -98,15 +109,16 @@ const ChartForm = () => {
             />
           </div>
 
-          {parseInt(box1Value) + parseInt(box2Value) > 100 && (
+          {parseInt(box1Value) + parseInt(box2Value) > 100  && (
             <p className="text-danger">Sum of values cannot exceed 100%</p>
-          )}
+          )} 
 
           <button className="btn btn-primary mt-4" onClick={handleCreateChart}>Create Chart</button>
-
+          <div className='col-md-4'>
           {showChart && (
             <canvas ref={canvasRef} width={200} height={200} style={{ margin: '20px' }} className="border" />
           )}
+          </div>
         </div>
       </div>
     </div>
